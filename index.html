@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monaco — Caffe & Restaurant · Prishtina</title>
+<meta name="description" content="Monaco Caffe & Restaurant — signature sandwiches served with pasta, next to the NEWBORN monument, Luan Haradinaj Street, Prishtina, Kosovo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#13301f;
+    --green-deep:#0d2417;
+    --green-soft:#1d3f2b;
+    --red:#7a1d1d;
+    --red-bright:#9c2626;
+    --cream:#f3ead4;
+    --cream-dim:#cdc3a8;
+    --gold:#c9a24b;
+    --wolt:#22d4f5;
+    --line:rgba(243,234,212,.16);
+    --shadow:0 30px 60px -25px rgba(0,0,0,.6);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--green);
+    color:var(--cream);
+    font-family:'Archivo',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(201,162,75,.08), transparent 60%),
+      radial-gradient(100% 100% at 50% 120%, rgba(122,29,29,.12), transparent 55%);
+    mix-blend-mode:screen;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:3}
+
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,36,23,.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;max-width:1120px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces';font-weight:600;font-size:1.35rem;letter-spacing:.02em}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--red-bright);box-shadow:0 0 0 4px rgba(156,38,38,.25)}
+  .nav-links{display:flex;gap:30px;list-style:none}
+  .nav-links a{color:var(--cream-dim);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:color .25s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--cream);padding:8px 14px;border-radius:8px;font-size:.8rem;letter-spacing:.1em;cursor:pointer}
+
+  header.hero{position:relative;padding:clamp(70px,12vw,140px) 0 90px;overflow:hidden}
+  .hero-deco{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero-deco .ring{position:absolute;border-radius:50%;border:1px solid var(--line)}
+  .r1{width:520px;height:520px;top:-160px;right:-120px;border-color:rgba(201,162,75,.18)}
+  .r2{width:340px;height:340px;top:-60px;right:0;border-color:rgba(156,38,38,.25)}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:26px}
+  .kicker::before{content:"";width:34px;height:1px;background:var(--gold)}
+  .hero h1{font-size:clamp(3.2rem,9vw,7rem);line-height:.94;font-weight:500;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--red-bright)}
+  .hero p.lead{max-width:540px;margin:30px 0 38px;font-size:1.12rem;color:var(--cream-dim)}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:14px 30px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim)}
+  .hero-meta span{display:flex;align-items:center;gap:9px}
+  .hero-meta span::before{content:"";width:6px;height:6px;background:var(--gold);border-radius:50%}
+  .btn-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:40px}
+  .btn{display:inline-block;padding:15px 30px;border-radius:50px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:transform .25s,background .25s,color .25s}
+  .btn-fill{background:var(--red);color:var(--cream)}
+  .btn-fill:hover{background:var(--red-bright);transform:translateY(-3px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--cream)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+  .btn-wolt-sm{background:#22d4f5;color:#00343d;font-weight:600}
+  .btn-wolt-sm:hover{background:#3ddcf7;transform:translateY(-3px)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .signature{background:var(--green-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:64px 0}
+  .sig-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:54px;align-items:center}
+  .sig-grid h2{font-size:clamp(2rem,4vw,2.9rem);font-weight:500;line-height:1.06;margin-bottom:18px}
+  .sig-grid h2 em{font-style:italic;color:var(--gold)}
+  .sig-grid p{color:var(--cream-dim);font-size:1.04rem}
+  .sig-card{background:linear-gradient(160deg,var(--green-soft),var(--green-deep));border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}
+  .sig-card .tag{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--red-bright);font-weight:700}
+  .sig-card .name{font-family:'Fraunces';font-size:1.5rem;margin:6px 0 4px}
+  .sig-card .desc{color:var(--cream-dim);font-size:.95rem;margin-bottom:18px}
+  .sig-card .price{font-family:'Fraunces';font-size:1.5rem;color:var(--gold)}
+  .sig-list{list-style:none;margin-top:18px;border-top:1px dashed var(--line);padding-top:18px;display:grid;gap:10px}
+  .sig-list li{display:flex;justify-content:space-between;font-size:.95rem}
+  .sig-list li span:last-child{color:var(--gold);font-family:'Fraunces'}
+
+  .btn-wolt{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:#22d4f5;color:#00343d;
+    padding:16px 30px;border-radius:50px;font-size:.92rem;letter-spacing:.04em;text-transform:none;font-weight:700;text-decoration:none;
+    box-shadow:0 14px 30px -10px rgba(0,194,232,.5);transition:transform .25s,background .25s}
+  .btn-wolt:hover{background:#3ddcf7;transform:translateY(-3px)}
+  .wolt-word{font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;letter-spacing:-1px;fill:currentColor}
+  .wolt-logo{display:inline-flex;align-items:center}
+  .wolt-logo svg{height:1.05em;width:auto;display:block}
+  .wolt-logo.big svg{height:54px}
+
+  .order{padding:30px 0 90px}
+  .order-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;
+    background:linear-gradient(150deg,var(--green-soft),var(--green-deep));border:1px solid var(--line);border-radius:24px;padding:54px;box-shadow:var(--shadow)}
+  .order-deco{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,194,232,.18),transparent 70%);top:-120px;right:-80px;pointer-events:none}
+  .order-left h2{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:500;line-height:1.04;margin:14px 0 16px}
+  .order-left p{color:var(--cream-dim);max-width:440px;font-size:1.05rem}
+  .order-note{font-size:.82rem!important;color:var(--cream-dim);opacity:.75;margin-top:16px}
+  .order-right{display:flex;justify-content:center}
+  .wolt-badge{background:#001f24;border:1px solid rgba(0,194,232,.4);border-radius:20px;padding:34px 40px;text-align:center;color:var(--wolt)}
+  .wolt-badge .wolt-tag{margin-top:14px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+
+  .menu-sec{padding:90px 0 60px}
+  .sec-head{text-align:center;margin-bottom:54px}
+  .sec-head .kicker{justify-content:center}
+  .sec-head .kicker::after{content:"";width:34px;height:1px;background:var(--gold)}
+  .sec-head h2{font-size:clamp(2.4rem,6vw,4rem);font-weight:500}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 60px}
+  .cat{break-inside:avoid;margin-bottom:18px}
+  .cat-title{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
+  .cat-title h3{font-size:1.5rem;font-weight:600;white-space:nowrap}
+  .cat-title .line{flex:1;height:1px;background:var(--line)}
+  .cat-title .sub{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red-bright);font-weight:700}
+  .item{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dotted rgba(243,234,212,.12)}
+  .item:last-child{border-bottom:none}
+  .item .iname{font-size:1.02rem}
+  .item .lead-dots{flex:1;border-bottom:1px dotted rgba(243,234,212,.22);transform:translateY(-4px)}
+  .item .iprice{font-family:'Fraunces';font-size:1.05rem;color:var(--gold);white-space:nowrap}
+  .cat.feature{background:linear-gradient(160deg,rgba(122,29,29,.22),transparent);border:1px solid rgba(156,38,38,.3);border-radius:16px;padding:24px 26px;grid-column:1/-1}
+  .cat.feature .cat-title h3{color:var(--cream)}
+
+  .loc{background:var(--green-deep);border-top:1px solid var(--line);padding:90px 0}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+  .loc h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:500;line-height:1.05;margin-bottom:24px}
+  .loc h2 em{font-style:italic;color:var(--red-bright)}
+  .loc .detail{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .loc .detail .lab{min-width:120px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding-top:3px}
+  .loc .detail .val{font-size:1.05rem;color:var(--cream)}
+  .loc .detail .val small{display:block;color:var(--cream-dim);font-size:.88rem;margin-top:2px}
+  .loc .detail .val a{color:var(--cream);text-decoration:none;border-bottom:1px solid var(--gold)}
+  .map-card{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:1/1;background:var(--green-soft)}
+  .map-card iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+  .newborn-badge{position:absolute;left:18px;bottom:18px;background:rgba(13,36,23,.9);border:1px solid var(--line);border-radius:12px;padding:12px 16px;backdrop-filter:blur(6px)}
+  .newborn-badge .t{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .newborn-badge .b{font-family:'Fraunces';font-size:1.05rem}
+  .map-open{position:absolute;right:18px;top:18px;background:var(--red);color:var(--cream);text-decoration:none;
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:11px 18px;border-radius:50px;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,.6);transition:background .25s,transform .25s}
+  .map-open:hover{background:var(--red-bright);transform:translateY(-2px)}
+
+  footer{padding:64px 0 40px;text-align:center;border-top:1px solid var(--line)}
+  .foot-brand{font-family:'Fraunces';font-size:2.4rem;font-weight:500;letter-spacing:.04em;margin-bottom:10px}
+  .foot-brand span{color:var(--red-bright)}
+  .foot-sub{color:var(--cream-dim);font-size:.9rem;letter-spacing:.08em;max-width:440px;margin:0 auto 26px}
+  .foot-hours{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;font-size:.86rem;color:var(--cream-dim);margin-bottom:30px}
+  .foot-hours b{display:block;color:var(--cream);font-family:'Fraunces';font-size:1rem}
+  .foot-hours a{color:inherit;text-decoration:none}
+  .copy{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);opacity:.7}
+
+  @media(max-width:820px){
+    .nav-links{position:fixed;inset:64px 0 auto 0;flex-direction:column;background:var(--green-deep);padding:24px 28px;gap:20px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .4s;z-index:40}
+    .nav-links.open{transform:none}
+    .nav-toggle{display:block}
+    .sig-grid,.loc-grid{grid-template-columns:1fr;gap:34px}
+    .order-card{grid-template-columns:1fr;gap:30px;padding:34px}
+    .order-right{order:-1}
+    .menu-grid{grid-template-columns:1fr;gap:14px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="brand"><span class="dot"></span>MONACO</div>
+    <button class="nav-toggle" id="navToggle">Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#signature">Sandwiches</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="#location">Location</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-deco"><div class="ring r1"></div><div class="ring r2"></div></div>
+  <div class="wrap">
+    <span class="kicker reveal">Caffe & Restaurant · Prishtina</span>
+    <h1 class="reveal">Monaco.<br><em>Sandwiches</em> & pasta,<br>every day.</h1>
+    <p class="lead reveal">A warm corner right by the NEWBORN monument — where the sandwich is the star of the menu, always served with pasta. Great coffee, breakfast, grill and pizza in the heart of Prishtina.</p>
+    <div class="hero-meta reveal">
+      <span>Luan Haradinaj St.</span>
+      <span>Next to NEWBORN</span>
+      <span>Prishtina, Kosovo</span>
+    </div>
+    <div class="btn-row reveal">
+      <a href="#menu" class="btn btn-fill">View Menu</a>
+      <a href="#order" class="btn btn-wolt-sm">Order on Wolt</a>
+      <a href="#location" class="btn btn-ghost">Find Us</a>
+    </div>
+  </div>
+</header>
+
+<section class="signature" id="signature">
+  <div class="wrap">
+    <div class="sig-grid">
+      <div class="reveal">
+        <span class="kicker">House specialty</span>
+        <h2>The sandwich, <em>served with pasta</em></h2>
+        <p>At Monaco, the sandwich isn't just fast food — it's the main course. Every sandwich comes paired with pasta, for a full and satisfying meal. Pick your favourite filling, and we'll take care of the rest.</p>
+      </div>
+      <div class="sig-card reveal">
+        <div class="tag">Best seller</div>
+        <div class="name">Monaco Sandwich with Pasta</div>
+        <div class="desc">Our house blend, served with fresh pasta on the side.</div>
+        <div class="price">€5.00</div>
+        <ul class="sig-list">
+          <li><span>Ham Sandwich with Pasta</span><span>€4.50</span></li>
+          <li><span>Sujuk Sandwich with Pasta</span><span>€4.50</span></li>
+          <li><span>Chicken Sandwich with Pasta</span><span>€4.80</span></li>
+          <li><span>Tuna Sandwich with Pasta</span><span>€4.80</span></li>
+          <li><span>Vegetarian Sandwich</span><span>€4.50</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="order">
+  <div class="wrap">
+    <div class="order-card reveal">
+      <div class="order-deco"></div>
+      <div class="order-left">
+        <span class="kicker">Our delivery partner</span>
+        <h2>Order now,<br>to your door.</h2>
+        <p>Enjoy Monaco's sandwiches with pasta, pizzas and specialties anywhere in Prishtina. Order online through our official delivery partner.</p>
+        <a href="https://wolt.com" target="_blank" rel="noopener" class="btn btn-wolt">
+          Order on
+          <span class="wolt-logo" aria-label="Wolt">
+            <svg viewBox="0 0 90 34" xmlns="http://www.w3.org/2000/svg" role="img">
+              <text x="0" y="26" class="wolt-word">Wolt</text>
+            </svg>
+          </span>
+        </a>
+        <p class="order-note">Delivery and availability depend on your area — check the Wolt app.</p>
+      </div>
+      <div class="order-right">
+        <div class="wolt-badge">
+          <span class="wolt-logo big" aria-label="Wolt">
+            <svg viewBox="0 0 90 34" xmlns="http://www.w3.org/2000/svg" role="img">
+              <text x="0" y="26" class="wolt-word">Wolt</text>
+            </svg>
+          </span>
+          <div class="wolt-tag">Official delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Prices in Euro</span>
+      <h2>Menu</h2>
+    </div>
+    <div class="menu-grid">
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Starters</h3><span class="line"></span><span class="sub">Paragjella</span></div>
+        <div class="item"><span class="iname">Soup of the Day</span><span class="lead-dots"></span><span class="iprice">€2.00</span></div>
+        <div class="item"><span class="iname">Peppers in Butter Sauce</span><span class="lead-dots"></span><span class="iprice">€3.00</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Breakfast</h3><span class="line"></span><span class="sub">Mëngjesi</span></div>
+        <div class="item"><span class="iname">Homemade Llokuma (Fried Dough)</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+        <div class="item"><span class="iname">Plain Omelette</span><span class="lead-dots"></span><span class="iprice">€3.80</span></div>
+        <div class="item"><span class="iname">Omelette with Sujuk</span><span class="lead-dots"></span><span class="iprice">€3.80</span></div>
+        <div class="item"><span class="iname">Vegetarian Omelette</span><span class="lead-dots"></span><span class="iprice">€3.80</span></div>
+        <div class="item"><span class="iname">Omelette with Mushrooms &amp; Ham</span><span class="lead-dots"></span><span class="iprice">€3.80</span></div>
+      </div>
+
+      <div class="cat feature reveal">
+        <div class="cat-title"><h3>Sandwiches</h3><span class="line"></span><span class="sub">Served with pasta · Specialty</span></div>
+        <div class="item"><span class="iname">Ham Sandwich with Pasta</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Sujuk Sandwich with Pasta</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Chicken Sandwich with Pasta</span><span class="lead-dots"></span><span class="iprice">€4.80</span></div>
+        <div class="item"><span class="iname">Tuna Sandwich with Pasta</span><span class="lead-dots"></span><span class="iprice">€4.80</span></div>
+        <div class="item"><span class="iname">Monaco Sandwich with Pasta</span><span class="lead-dots"></span><span class="iprice">€5.00</span></div>
+        <div class="item"><span class="iname">Vegetarian Sandwich</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Salads</h3><span class="line"></span><span class="sub">Sallatat</span></div>
+        <div class="item"><span class="iname">Chicken Salad</span><span class="lead-dots"></span><span class="iprice">€4.00</span></div>
+        <div class="item"><span class="iname">Tuna Salad</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Shopska Salad</span><span class="lead-dots"></span><span class="iprice">€3.50</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Pasta</h3><span class="line"></span><span class="sub">Pasta</span></div>
+        <div class="item"><span class="iname">Pasta Bolognese</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Pasta Carbonara</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Pasta Arrabbiata</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Homemade Pasta with Vegetables</span><span class="lead-dots"></span><span class="iprice">€5.00</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Pogaçe</h3><span class="line"></span><span class="sub">Savoury Buns</span></div>
+        <div class="item"><span class="iname">Pogaçe with Sujuk</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+        <div class="item"><span class="iname">Pogaçe with Ham</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+        <div class="item"><span class="iname">Pogaçe with Chicken</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+        <div class="item"><span class="iname">Pogaçe Mix</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Chicken Specialties</h3><span class="line"></span><span class="sub">Specialitete pule</span></div>
+        <div class="item"><span class="iname">Chicken Fillet in Sauce</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Chicken Risotto with Vegetables</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Chicken with Vegetables</span><span class="lead-dots"></span><span class="iprice">€5.80</span></div>
+        <div class="item"><span class="iname">Chicken in Clay Pot</span><span class="lead-dots"></span><span class="iprice">€6.00</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Grill</h3><span class="line"></span><span class="sub">Skara</span></div>
+        <div class="item"><span class="iname">Classic Burger</span><span class="lead-dots"></span><span class="iprice">€2.80</span></div>
+        <div class="item"><span class="iname">House Burger</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+        <div class="item"><span class="iname">Chicken Burger</span><span class="lead-dots"></span><span class="iprice">€3.30</span></div>
+        <div class="item"><span class="iname">Pleskavica with Mushroom Sauce</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Stuffed Pleskavica</span><span class="lead-dots"></span><span class="iprice">€5.00</span></div>
+        <div class="item"><span class="iname">Pleskavica in Clay Pot</span><span class="lead-dots"></span><span class="iprice">€5.50</span></div>
+        <div class="item"><span class="iname">Sujuk in Clay Pot</span><span class="lead-dots"></span><span class="iprice">€5.50</span></div>
+      </div>
+
+      <div class="cat reveal">
+        <div class="cat-title"><h3>Pizza</h3><span class="line"></span><span class="sub">Pica</span></div>
+        <div class="item"><span class="iname">Pizza Margherita</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Ham Pizza</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Pizza Funghi</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Vegetarian Pizza</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">Tuna Pizza</span><span class="lead-dots"></span><span class="iprice">€4.50</span></div>
+        <div class="item"><span class="iname">House Pizza</span><span class="lead-dots"></span><span class="iprice">€5.00</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="loc" id="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="reveal">
+        <span class="kicker">Visit us</span>
+        <h2>Next to <em>NEWBORN</em>,<br>in the heart of the city.</h2>
+        <div class="detail"><div class="lab">Address</div><div class="val">Luan Haradinaj Street<small>Next to the NEWBORN monument, Prishtina, Kosovo</small></div></div>
+        <div class="detail"><div class="lab">Phone</div><div class="val"><a href="tel:+38349606018">+383 49 606 018</a></div></div>
+        <div class="detail"><div class="lab">Hours</div><div class="val">Every day · 07:00 – 23:00<small>Breakfast served from 07:00</small></div></div>
+        <div class="detail"><div class="lab">Best for</div><div class="val">Breakfast, coffee, sandwiches with pasta, quick lunch</div></div>
+      </div>
+      <div class="map-card reveal">
+        <iframe src="https://maps.google.com/maps?q=Monaco+Lounge,Luan+Haradinaj,Prishtina&ll=42.6610661,21.1583119&z=18&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Monaco Caffe & Restaurant, Luan Haradinaj, Prishtina"></iframe>
+        <a class="map-open" href="https://www.google.com/maps/dir/?api=1&destination=42.6610661,21.1583119&destination_place_id=ChIJ0QHKZ-GeVBMRrm4-m1b1pyI" target="_blank" rel="noopener">Get Directions ↗</a>
+        <div class="newborn-badge"><div class="t">Find us at</div><div class="b">Monaco · by NEWBORN</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">MO<span>N</span>ACO</div>
+    <p class="foot-sub">Caffe & Restaurant — signature sandwiches served with pasta, great coffee and homemade flavours, right by the NEWBORN monument in Prishtina.</p>
+    <div class="foot-hours">
+      <div><b>Hours</b>Every day · 07:00 – 23:00</div>
+      <div><b>Address</b>Luan Haradinaj, Prishtina</div>
+      <div><b>Phone</b><a href="tel:+38349606018">+383 49 606 018</a></div>
+    </div>
+    <div class="copy">© Monaco Caffe & Restaurant · Prishtina, Kosovo</div>
+  </div>
+</footer>
+
+<script>
+  const t=document.getElementById('navToggle'),l=document.getElementById('navLinks');
+  t.addEventListener('click',()=>l.classList.toggle('open'));
+  l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>l.classList.remove('open')));
+
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=(i%6)*60+'ms';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
