@@ -174,6 +174,9 @@
     .order-card{grid-template-columns:1fr;gap:30px;padding:34px}
     .order-right{order:-1}
     .menu-grid{grid-template-columns:1fr;gap:14px 0}
+    .cat-title{flex-direction:column;align-items:flex-start;gap:5px}
+    .cat-title h3{white-space:normal}
+    .cat-title .line{display:none}
   }
 </style>
 </head>
@@ -181,7 +184,7 @@
 
 <nav>
   <div class="nav-in">
-    <div class="brand"><span class="dot"></span>MONACO</div>
+    <div class="brand">MONACO</div>
     <button class="nav-toggle" id="navToggle">Menu</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#signature">Sandwiches</a></li>
